@@ -1,5 +1,6 @@
 <template>
   <section class="stream">
+    <button @click="stopStream" v-if="streaming">Stop streaming</button>
     <video ref="video" autoplay></video>
   </section>
 </template>
@@ -24,6 +25,8 @@ export default {
   name: 'stream',
   data () {
     return {
+      streaming: false,
+      mediaStream: null,
       name: this.slug === 'new' ? generateStreamName() : this.slug
     }
   },
@@ -40,6 +43,8 @@ export default {
       try {
         const stream = await navigator.mediaDevices.getUserMedia(videoConstraint)
         this.$refs.video.srcObject = stream
+        this.streaming = true
+        this.mediaStream = stream
         // TODO: Open WebSocket and send stream
       } catch (error) {
         alert(`${error.name}`)
@@ -47,7 +52,12 @@ export default {
       }
     },
     async getStream () {
-      // TODO: open WebSocket and get stream
+      // TODO: Open WebSocket and get stream
+    },
+    async stopStream () {
+      this.mediaStream.getTracks().forEach(track => track.stop())
+      // TODO: Close WebSocket and terminate stream
+      this.$router.push('/')
     }
   }
 }
