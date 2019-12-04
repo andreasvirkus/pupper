@@ -6,7 +6,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "start": "node server",
-    "postinstall": "yarn && yarn build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },

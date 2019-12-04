@@ -1,6 +1,10 @@
 <template>
   <section class="stream">
-    <button @click="stopStream" v-if="streaming">Stop streaming</button>
+    <div v-if="streaming">
+      <p>This stream's name:</p>
+      <pre>{{ name }}</pre>
+      <button @click="stopStream">Stop streaming</button>
+    </div>
     <video ref="video" autoplay></video>
   </section>
 </template>
@@ -19,7 +23,8 @@ const config = {
 
 const generateStreamName = () => uniqueNamesGenerator(config)
 
-const videoConstraint = { audio: false, video: { width: 1280, height: 720 } }
+// const videoConstraint = { audio: false, video: { width: 1280, height: 720 } }
+const videoConstraint = { audio: false, video: true }
 
 export default {
   name: 'stream',
