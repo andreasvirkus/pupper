@@ -5,11 +5,15 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "start": "node server.js",
+    "postinstall": "yarn && yarn build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.4.3",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
     "register-service-worker": "^1.6.2",
     "unique-names-generator": "^4.1.1",
     "vue": "^2.6.10",
